@@ -33,9 +33,9 @@ public class Collector : MonoBehaviour
         if (_isFree == false)
         {
             if (_isResource == false)
-                transform.position = Vector3.MoveTowards(transform.position, _target, _speed * Time.deltaTime);
+                Move(_target);
             else
-                transform.position = Vector3.MoveTowards(transform.position, _positionBase, _speed * Time.deltaTime);
+                Move(_positionBase);
         }
     }
 
@@ -54,5 +54,10 @@ public class Collector : MonoBehaviour
     {
         _isFree = true;
         _isResource = false;
+    }
+
+    private void Move(Vector3 target)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, _speed * Time.deltaTime);
     }
 }

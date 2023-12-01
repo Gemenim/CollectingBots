@@ -6,30 +6,35 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
-    private float _unit = 1;
-
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.D))
         {
-            Vector3 direction = new Vector3(_unit, 0, 0).normalized;
-            transform.position = transform.position + direction * _speed;
+            MoveByX(1);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            Vector3 direction = new Vector3(-_unit, 0, 0).normalized;
-            transform.position = transform.position + direction * _speed;
+            MoveByX(-1);
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            Vector3 direction = new Vector3(0, 0, _unit).normalized;
-            transform.position = transform.position + direction * _speed;
+            MoveByZ(1);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            Vector3 direction = new Vector3(0, 0, -_unit).normalized;
-            transform.position = transform.position + direction * _speed;
+            MoveByZ(-1);
         }
+    }
+
+    private void MoveByX(float direction)
+    {
+        Vector3 directionNormaliz = new Vector3(direction, 0, 0).normalized;
+        transform.position = transform.position + directionNormaliz * _speed * Time.deltaTime;
+    }
+    private void MoveByZ(float diraction)
+    {
+        Vector3 directionNormaliz = new Vector3(0, 0, diraction).normalized;
+        transform.position = transform.position + directionNormaliz* _speed * Time.deltaTime;
     }
 }

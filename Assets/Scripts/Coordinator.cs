@@ -1,30 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Coordinator : MonoBehaviour
 {
     private Base _base;
-    private Resources[] _resources;
+    private CreatorResource _creatorResource;
+    private List<Resources> _resources;
 
     private void Start()
     {
         _base = GetComponent<Base>();
+        _creatorResource = GameObject.FindAnyObjectByType<Terrain>().GetComponentInChildren<CreatorResource>();
     }
 
     private void Update()
     {
-        _resources = GameObject.FindObjectsOfType<Resources>();
+        _resources = _creatorResource.ResourcesList;
 
-        if (_resources.Length > 0)
+        if (_resources.Count > 0)
         {
-            foreach (Resources resources in _resources)
+            foreach (Collector collector in _base.Collectors)
             {
-                if (resources.IsFound == false)
+                if (collector.IsFree)
                 {
-                    foreach (Collector collector in _base.Collectors)
+                    foreach (Resources resources in _resources)
                     {
-                        if (collector.IsFree)
+                        if (resources.IsFound == false)
                         {
                             collector.TakeTarget(resources.transform.position);
                             resources.ChangeStatus();

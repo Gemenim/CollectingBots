@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collector: {fileID: 1863977632505822645, guid: d8c501c015221f14da987f4098f1fc5f, type: 3}
-  _countCollectors: 2
+  _countCollectors: 3
 --- !u!114 &246259734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resources: {fileID: 5070696023514965089, guid: 5113e5a4eb35f7d498ceef4ce4a8f26d, type: 3}
-  _cooldown: 5
+  _cooldown: 3
   _size: 20
 --- !u!1 &705507993
 GameObject:
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933405f6d7925354fb3f3c0e4e12e8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.5
+  _speed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
