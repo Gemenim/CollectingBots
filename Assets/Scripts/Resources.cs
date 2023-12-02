@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Resources : MonoBehaviour
 {
-    private bool _isFound = false;
-
-    public bool IsFound => _isFound;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Collector>(out Collector collector))
@@ -15,10 +11,5 @@ public class Resources : MonoBehaviour
             collector.TakeResource();
             Destroy(gameObject);
         }
-    }
-
-    public void ChangeStatus()
-    {
-        _isFound = true;
     }
 }

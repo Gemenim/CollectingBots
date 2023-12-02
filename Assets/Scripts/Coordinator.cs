@@ -7,7 +7,7 @@ public class Coordinator : MonoBehaviour
 {
     private Base _base;
     private CreatorResource _creatorResource;
-    private List<Resources> _resources;
+    private Queue<Resources> _resources;
 
     private void Start()
     {
@@ -15,9 +15,9 @@ public class Coordinator : MonoBehaviour
         _creatorResource = GameObject.FindAnyObjectByType<Terrain>().GetComponentInChildren<CreatorResource>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        _resources = _creatorResource.ResourcesList;
+        _resources = _creatorResource.ResourcesQueuet;
 
         if (_resources.Count > 0)
         {
@@ -25,15 +25,9 @@ public class Coordinator : MonoBehaviour
             {
                 if (collector.IsFree)
                 {
-                    foreach (Resources resources in _resources)
-                    {
-                        if (resources.IsFound == false)
-                        {
-                            collector.TakeTarget(resources.transform.position);
-                            resources.ChangeStatus();
-                            break;
-                        }
-                    }
+                    Resources resources = _resources.Dequeue();
+                    collector.TakeTarget(resources.transform.position);
+                    break;
                 }
             }
         }

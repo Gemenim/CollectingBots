@@ -8,14 +8,14 @@ public class CreatorResource : MonoBehaviour
     [SerializeField] private float _cooldown;
     [SerializeField] private float _size;
     
-    private List<Resources> _resourcesList = new List<Resources>();
+    private Queue<Resources> _resourcesQueuet = new Queue<Resources>();
     private float _maxCoordinateX;
     private float _maxCoordinateZ;
     private float _minCoordinateX;
     private float _minCoordinateZ;
     private float _positionY;
 
-    public List<Resources> ResourcesList => _resourcesList;
+    public Queue<Resources> ResourcesQueuet => _resourcesQueuet;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class CreatorResource : MonoBehaviour
             float randomPositionX = Random.Range(_minCoordinateX, _maxCoordinateX);
             float randomPositionZ = Random.Range(_maxCoordinateZ, _minCoordinateZ);
             Vector3 position = new Vector3(randomPositionX, _positionY, randomPositionZ);
-            _resourcesList.Add(Instantiate(_resources, position, Quaternion.identity));
+            _resourcesQueuet.Enqueue(Instantiate(_resources, position, Quaternion.identity));
             yield return new WaitForSeconds(_cooldown);
         }
     }

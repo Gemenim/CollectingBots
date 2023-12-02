@@ -19,15 +19,6 @@ public class Collector : MonoBehaviour
         _positionBase = transform.position;
     }
 
-    private void Update()
-    {
-        if (transform.position == _positionBase && _isResource)
-        {
-            _isResource = false;
-            _isFree = true;
-        }
-    }
-
     private void FixedUpdate()
     {
         if (_isFree == false)
@@ -36,6 +27,16 @@ public class Collector : MonoBehaviour
                 Move(_target);
             else
                 Move(_positionBase);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(_isResource && other.TryGetComponent<Base>(out Base warehouse))
+        {
+            _isResource = false;
+            _isFree = true;
+            warehouse.TakeResource();
         }
     }
 

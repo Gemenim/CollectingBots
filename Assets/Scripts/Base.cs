@@ -21,17 +21,10 @@ public class Base : MonoBehaviour
 
         for (int i = 0; i < _countCollectors; i++)
             _collectors[i] = Instantiate(_collector, transform.position, Quaternion.identity);
-    }    
+    } 
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeResource()
     {
-        if (other.TryGetComponent<Collector>(out Collector collector))
-        {
-            if (collector.IsResource)
-            {
-                _countResources++;
-                collector.TransferResource();
-            }   
-        }
+        _countResources++;
     }
 }
