@@ -1,33 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Collector : MonoBehaviour
-{
-    [SerializeField] private float _speed;
-
-    private Vector3 _positionBase;
-    private Vector3 _target;
+{    
     private bool _isResource = false;
     private bool _isFree = true;
+    private Vector3 _target;
+    private Vector3 _positionBase;
 
+    public Vector3 PositionBase => _positionBase;
+    public Vector3 Target => _target;
     public bool IsResource => _isResource;
     public bool IsFree => _isFree;
 
     private void Start()
     {
         _positionBase = transform.position;
-    }
-
-    private void FixedUpdate()
-    {
-        if (_isFree == false)
-        {
-            if (_isResource == false)
-                Move(_target);
-            else
-                Move(_positionBase);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -55,10 +45,5 @@ public class Collector : MonoBehaviour
     {
         _isFree = true;
         _isResource = false;
-    }
-
-    private void Move(Vector3 target)
-    {
-        transform.position = Vector3.MoveTowards(transform.position, target, _speed * Time.deltaTime);
     }
 }

@@ -631,7 +631,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -639,15 +639,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity_Games\CollectingBots
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 325b0000
-    m_LastClickedID: 23346
+    m_SelectedIDs: 2e5b0000
+    m_LastClickedID: 23342
     m_ExpandedIDs: 00000000245b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -701,8 +701,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 541f0000
-    m_LastClickedInstanceID: 8020
+    m_SelectedInstanceIDs: c25a0000
+    m_LastClickedInstanceID: 23234
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000ec6300000c6d0000e26c00007067000032680000e0710000d0710000928a0000948a0000bc8a0000aa8a0000b28a00008c670000be6200003a610000906100009e610000386100003c610000546100005c610000
     m_RenameOverlay:
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 541f0000
+      m_SelectedIDs: c25a0000
       m_LastClickedID: 0
       m_ExpandedIDs: 30fbffff
       m_RenameOverlay:

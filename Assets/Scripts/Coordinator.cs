@@ -13,23 +13,29 @@ public class Coordinator : MonoBehaviour
     {
         _base = GetComponent<Base>();
         _creatorResource = GameObject.FindAnyObjectByType<Terrain>().GetComponentInChildren<CreatorResource>();
+        StartCoroutine(Coordinate());
     }
 
-    private void FixedUpdate()
+    private IEnumerator Coordinate()
     {
-        _resources = _creatorResource.ResourcesQueuet;
-
-        if (_resources.Count > 0)
+        while (true) 
         {
-            foreach (Collector collector in _base.Collectors)
+            _resources = _creatorResource.ResourcesQueuet;
+
+            if (_resources.Count > 0)
             {
-                if (collector.IsFree)
+                foreach (Collector collector in _base.Collectors)
                 {
-                    Resources resources = _resources.Dequeue();
-                    collector.TakeTarget(resources.transform.position);
-                    break;
+                    if (collector.IsFree)
+                    {
+                        Resources resources = _resources.Dequeue();
+                        collector.TakeTarget(resources.transform.position);
+                        break;
+                    }
                 }
             }
+
+            yield return new WaitForFixedUpdate();
         }
     }
 }

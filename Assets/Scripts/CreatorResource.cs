@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CreatorResource : MonoBehaviour
@@ -9,6 +10,7 @@ public class CreatorResource : MonoBehaviour
     [SerializeField] private float _size;
     
     private Queue<Resources> _resourcesQueuet = new Queue<Resources>();
+    private WaitForSeconds _delay;
     private float _maxCoordinateX;
     private float _maxCoordinateZ;
     private float _minCoordinateX;
@@ -24,6 +26,7 @@ public class CreatorResource : MonoBehaviour
         _minCoordinateX = transform.position.x;
         _minCoordinateZ = transform.position.z;
         _positionY = _resources.transform.localScale.y / 2;
+        _delay = new WaitForSeconds(_cooldown);
 
         StartCoroutine(CreateResource());
     }
@@ -36,7 +39,7 @@ public class CreatorResource : MonoBehaviour
             float randomPositionZ = Random.Range(_maxCoordinateZ, _minCoordinateZ);
             Vector3 position = new Vector3(randomPositionX, _positionY, randomPositionZ);
             _resourcesQueuet.Enqueue(Instantiate(_resources, position, Quaternion.identity));
-            yield return new WaitForSeconds(_cooldown);
+            yield return _delay;
         }
     }
 }
