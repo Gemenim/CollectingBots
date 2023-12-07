@@ -7,8 +7,9 @@ public class CreatorResource : MonoBehaviour
 {
     [SerializeField] private Resources _resources;
     [SerializeField] private float _cooldown;
+    [SerializeField] private int _maxCountResources = 5;
     [SerializeField] private float _size;
-    
+
     private Queue<Resources> _resourcesQueuet = new Queue<Resources>();
     private WaitForSeconds _delay;
     private float _maxCoordinateX;
@@ -18,6 +19,12 @@ public class CreatorResource : MonoBehaviour
     private float _positionY;
 
     public Queue<Resources> ResourcesQueuet => _resourcesQueuet;
+
+    private void Awake()
+    {
+        if (_maxCountResources <= 0)
+            _maxCountResources = 5;
+    }
 
     private void Start()
     {
@@ -35,10 +42,13 @@ public class CreatorResource : MonoBehaviour
     {
         while (true)
         {
-            float randomPositionX = Random.Range(_minCoordinateX, _maxCoordinateX);
-            float randomPositionZ = Random.Range(_maxCoordinateZ, _minCoordinateZ);
-            Vector3 position = new Vector3(randomPositionX, _positionY, randomPositionZ);
-            _resourcesQueuet.Enqueue(Instantiate(_resources, position, Quaternion.identity));
+            if (_resourcesQueuet.Count < _maxCountResources)
+            {
+                float randomPositionX = Random.Range(_minCoordinateX, _maxCoordinateX);
+                float randomPositionZ = Random.Range(_maxCoordinateZ, _minCoordinateZ);
+                Vector3 position = new Vector3(randomPositionX, _positionY, randomPositionZ);
+                _resourcesQueuet.Enqueue(Instantiate(_resources, position, Quaternion.identity));
+            }
             yield return _delay;
         }
     }

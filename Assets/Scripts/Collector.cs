@@ -9,18 +9,20 @@ public class Collector : MonoBehaviour
     private bool _isFree = true;
     private Vector3 _target;
     private Vector3 _positionBase;
+    private int _resource = 0;
 
     public Vector3 PositionBase => _positionBase;
     public Vector3 Target => _target;
     public bool IsResource => _isResource;
     public bool IsFree => _isFree;
+    public int Resource => _resource;
 
     private void Start()
     {
         _positionBase = transform.position;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(_isResource && other.TryGetComponent<Base>(out Base warehouse))
         {
@@ -28,6 +30,16 @@ public class Collector : MonoBehaviour
             _isFree = true;
             warehouse.TakeResource();
         }
+    }
+
+    public void TakePositionBase(Vector3 pisition)
+    {
+        _positionBase = pisition;
+    }
+
+    public void TransferResources(int resources)
+    {
+        _resource += resources;
     }
 
     public void TakeTarget(Vector3 target)

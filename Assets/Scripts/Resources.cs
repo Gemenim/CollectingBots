@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Resources : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent<Collector>(out Collector collector))
+        if (other.TryGetComponent<Collector>(out Collector collector) && collector.IsResource == false)
         {
             collector.TakeResource();
             Destroy(gameObject);

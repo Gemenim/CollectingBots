@@ -22,13 +22,27 @@ public class Coordinator : MonoBehaviour
         {
             _resources = _creatorResource.ResourcesQueuet;
 
-            if (_resources.Count > 0)
+            if (_base.IsFlag && _base.CoutnResources == 5)
+            {
+                foreach (Collector collector in _base.Collectors)
+                {
+                    if (collector.IsFree)
+                    {
+                        collector.TransferResources(5);
+                        collector.TakeTarget(_base.targetFlag.transform.position);
+                        break;
+                    }
+                }
+            }
+            else if (_resources.Count > 0)
             {
                 foreach (Collector collector in _base.Collectors)
                 {
                     if (collector.IsFree)
                     {
                         Resources resources = _resources.Dequeue();
+                        if (resources == null)
+                            break;
                         collector.TakeTarget(resources.transform.position);
                         break;
                     }

@@ -15,9 +15,11 @@ public class MoverCollector : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_collector.IsFree == false)
+        if (_collector.IsFree == false || _collector.IsResource)
         {
-            if (_collector.IsResource == false)
+            if (_collector.transform.position == _collector.Target)
+                Move(_collector.PositionBase);
+            else if(_collector.IsResource == false)
                 Move(_collector.Target);
             else
                 Move(_collector.PositionBase);
